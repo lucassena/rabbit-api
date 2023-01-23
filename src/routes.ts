@@ -63,7 +63,7 @@ export async function appRoutes(app: FastifyInstance) {
 
         const completedHabits = day?.dayHabits.map(dayHabit => {
             return dayHabit.habit_id
-        })
+        }) ?? []
 
         return {
             habits,
@@ -71,7 +71,7 @@ export async function appRoutes(app: FastifyInstance) {
         }
     })
 
-    app.patch('/habits/:id/toogle', async (request) => {
+    app.patch('/habits/:id/toggle', async (request) => {
         const toggleHabitParams = z.object({
             id: z.string().uuid(),
         })
